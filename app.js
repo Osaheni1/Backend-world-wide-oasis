@@ -10,6 +10,7 @@ const settingRoutes = require('./routes/settingRoutes');
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
 const path = require('path');
+const compression = require('compression');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());
 
+app.use(compression());
 // app.use((req, res, next) => {
 //   console.log(req.cookies.jwt);
 //   console.log('cookies here');

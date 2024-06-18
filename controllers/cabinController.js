@@ -9,7 +9,7 @@ const sharp = require('sharp');
 const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
-  console.log(file);
+  // console.log(file);
   if (file.mimetype.startsWith('image')) {
     cb(null, true);
   } else {
@@ -23,7 +23,7 @@ const upload = multer({
 
 exports.uploadUserPhoto = upload.single('photo');
 exports.resizeimage = async (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
 
   if (!req.file) return next();
   req.file.filename = `cabin-${Date.now()}.jpeg`;

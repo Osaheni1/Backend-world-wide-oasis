@@ -21,7 +21,7 @@ const createSendToken = (staff, statusCode, req, res) => {
   });
 
   // console.log(res.cookies);
-  console.log(new Date(Date.now() + 270 * 24 * 60 * 60 * 1000));
+  // console.log(new Date(Date.now() + 270 * 24 * 60 * 60 * 1000));
   res.status(statusCode).json({
     status: 'success',
     token,
@@ -73,10 +73,10 @@ exports.protect = catchAsync(async (req, res, next) => {
       new AppError('You are not logged in! Please log in to get access.', 401),
     );
   }
-  console.log(token);
+  // console.log(token);
 
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  console.log(decoded);
+  // console.log(decoded);
 
   const currentStaff = await Staff.findById(decoded.id);
   if (!currentStaff) {
@@ -94,7 +94,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
 exports.isLoggedIn = catchAsync(async (req, res, next) => {
   if (req.cookies.jwt) {
-    console.log('we are here');
+    // console.log('we are here');
     const decoded = await promisify(jwt.verify)(
       req.cookies.jwt,
       process.env.JWT_SECRET,

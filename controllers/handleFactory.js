@@ -13,7 +13,7 @@ exports.getAll = (Model, popOption = '') =>
       path: popOption,
       select: '-__v',
     });
-  
+
     res.status(200).json({
       status: 'success',
       docNum: doc.length,
@@ -23,7 +23,6 @@ exports.getAll = (Model, popOption = '') =>
 
 exports.getOne = (Model, popOption) =>
   catchAsync(async (req, res, next) => {
-
     let doc;
     if (popOption) {
       doc = await Model.findById(req.params.id).select('-__v').populate({
@@ -46,7 +45,7 @@ exports.getOne = (Model, popOption) =>
 
 exports.createOne = (Model) =>
   catchAsync(async (req, res, next) => {
-    console.log(req.body);
+    // console.log(req.body);
     const doc = await Model.create(req.body);
 
     res.status(200).json({
